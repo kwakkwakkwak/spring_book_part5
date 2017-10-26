@@ -28,6 +28,8 @@ public interface BoardDAO {
 
     public void updateViewCnt(Integer bno) throws Exception;
 
+    public void addAttach(String fullName) throws Exception;
+
 
 
 }

@@ -51,53 +51,59 @@
             type: "POST",
             success: function(data) {
                 alert(data);
-//                var str = "";
-//
-//                console.log(data);
-//                console.log(checkImageType(data));
-//
-//                if(checkImageType(data)) {
-//                    str = "<div>" + "<a href-'displayFile?fileName=" + getImageLink(data) + "'>"
-//                        + "<img src='displayFile?fileName=" + data + "'/>" + "</a><small data-src=" + data + ">X</small></div>";
-//                } else {
-//                    str = "<div><a href='displayFlie?fileName=" + data + "'>" + getOriginalName(data)
-//                        + "</a>" + "<small data-src=" + data + ">X</small></div></div>";
-//                }
-//                $(".uploadedList").append(str);
+                var str = "";
+
+                console.log(data);
+                console.log(checkImageType(data));
+
+                if(checkImageType(data)) {
+                    str = "<div>" + "<a href='displayFile?fileName=" + getImageLink(data) + "'>"
+                        + "<img src='displayFile?fileName=" + data + "'/>" + "</a><small data-src=" + data + ">X</small></div>";
+                } else {
+                    str = "<div><a href='displayFile?fileName=" + data + "'>" + getOriginalName(data)
+                        + "</a>" + "<small data-src=" + data + ">X</small></div></div>";
+                }
+                $(".uploadedList").append(str);
             }
         });
     });
 
-//    function checkImageType(fileName) {
-//        var pattern = /jpg$|gif$|png$|jpeg$/i;
+    function getOriginalName(fileName) {
+        if(checkImageType(fileName))
+            return;
+        var idx = fileName.indexOf("_") + 1;
+        return fileName.substr(idx);
+    }
+    function checkImageType(fileName) {
+        var pattern = /jpg$|gif$|png$|jpeg$/i;
+
+        return fileName.match(pattern);
+    }
 //
-//        return fileName.match(pattern);
-//    }
+    function getImageLink(fileName) {
+        if(!checkImageType(fileName)) return;
+
+        var front = fileName.substr(0, 12);
+        var end = fileName.substr(14);
+
+        return front + end;
+    }
 //
-//    function getImageLink(fileName) {
-//        if(!checkImageType(fileName)) return;
-//
-//        var front = fileName.substr(0, 12);
-//        var end = fileName.substr(14);
-//
-//        return front + end;
-//    }
-//
-//    $(".uploadedList").on("click", "small", function(event) {
-//        var that = $(this);
-//
-//        $.ajax({
-//            url: "deleteFile",
-//            type: "post",
-//            data: {fileName: $(this).attr("data-src")},
-//            dataType: "text",
-//            success: function(result) {
-//                if(result == "deleted") {
-//                    that.parent("div").remove();
-//                }
-//            }
-//        });
-//    });
+    $(".uploadedList").on("click", "small", function(event) {
+        var that = $(this);
+
+        $.ajax({
+            url: "deleteFile",
+            type: "post",
+            data: {fileName: $(this).attr("data-src")},
+            dataType: "text",
+            success: function(result) {
+                if(result == "deleted") {
+                    that.parent("div").remove();
+                }
+            }
+        });
+    });
 </script>
 </body>
 </html>

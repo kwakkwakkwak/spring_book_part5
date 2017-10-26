@@ -39,7 +39,7 @@ public class UploadFileUtils {
         }else {
             uploadedFileName = makeIcon(uploadPath,savedPath,savedName);
         }
-        return null;
+        return uploadedFileName;
     }
 
     private static String makeIcon(String uploadPath, String path, String fileName) {
@@ -62,6 +62,8 @@ public class UploadFileUtils {
                 File.separator +
                 new DecimalFormat("00").format(cal.get(Calendar.DATE));
         logger.info(datePath);
+
+        makeDir(uploadPath,yearPath,monthPath,datePath);
 
         return datePath;
     }

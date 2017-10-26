@@ -104,6 +104,6 @@ public class SearchBoardController {
         rttr.addFlashAttribute("msg","SUCCESS");
 
         //return "/board/success";
-        return "redirect:/sboard/listPage";
+        return "redirect:/sboard/list";
     }
 }
