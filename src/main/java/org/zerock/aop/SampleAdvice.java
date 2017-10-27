@@ -29,8 +29,8 @@ public class SampleAdvice {
 
        Object result = pjp.proceed();
 
-       long endTiem = System.currentTimeMillis();
-       logger.info(pjp.getSignature().getName()+ " : " + (endTiem - startTime));
+       long endTime = System.currentTimeMillis();
+       logger.info(pjp.getSignature().getName()+ " : " + (endTime - startTime));
        logger.info("-------------------------------");
 
        return result;

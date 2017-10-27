@@ -50,4 +50,7 @@ public class BoardServiceTest {
         dao.remove(3);
     }
 
+
+
+
 }
